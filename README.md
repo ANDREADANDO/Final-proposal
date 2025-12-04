@@ -30,7 +30,8 @@ Month 11 savings: 250
 Month 12 savings: 450  
 Total savings before bonus: $ 6900.0  
 Bonus added: 500  
-Current savings after bonus: $ 7400.0  
+Current savings after bonus: $ 7400.0
+Thank you for using the Savings tracker!
 
 # Contributors
 - Student 1: Andrea Chloe G. Dando  
