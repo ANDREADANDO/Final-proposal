@@ -1,39 +1,80 @@
-# Savings Tracker
+Savings Tracker
 
-# Project Description
-The Savings Tracker is a simple Python program that calculates a user's total savings over 12 months. It asks the user for their savings each month and also lets them add a yearly bonus if they received one. At the end, the program displays the updated total savings for the year. This project applies basic programming concepts such as variables, loops, conditionals, and user input.
+Project Overview
 
-# Features
-- Collects monthly savings for an entire year.
-- Calculates the total savings at the end of the year.
-- NEW: Allows the user to add a yearly bonus to their total savings.
+The Savings Tracker is a Python-based financial tracking program that calculates a user’s total savings over 12 months. The system collects monthly savings data, computes the annual total, and optionally adds a yearly bonus.
+This project demonstrates the application of core programming concepts including iteration, conditional logic, user input handling, and data computation.
 
-# How to Run
-1. Download Python 3.13.7  
-2. Copy and paste the code  
-3. Then run it  
+Updated Feature List
 
-# Example outputs
-Savings Tracker  
-Enter your monthly savings below:  
-Month 1 savings: 300  
-Month 2 savings: 400  
-Month 3 savings: 500  
-Month 4 savings: 600  
-Month 5 savings: 700  
-Month 6 savings: 800  
-Month 7 savings: 800  
-Month 8 savings: 700  
-Month 9 savings: 750  
-Month 10 savings: 650  
-Month 11 savings: 250  
-Month 12 savings: 450  
-Total savings before bonus: $ 6900.0  
-Bonus added: 500  
-Current savings after bonus: $ 7400.0 
-Thank you for using the Savings tracker!
+Collects 12 months of savings input using a loop
+Computes total annual savings
+Allows user to indicate whether a yearly bonus was received
+Adds bonus amount to total savings if applicable
+Handles invalid bonus responses using conditional checks
+Displays final adjusted savings
 
-# Contributors
-- Student 1: Andrea Chloe G. Dando  
-- Student 2: Fritz Varun H. Tomines  
-- Student 3: Lit'le Tarcisse Janica D. Ensomo
+Technologies Used
+
+Python 3.13.7
+Chosen for its readability, simplicity, and suitability for beginner-to-intermediate programming projects. Python supports clear syntax for loops and conditionals, making it ideal for financial computation tasks.
+
+Detailed Methodology
+
+Core Feature Implementation
+
+1. Monthly Savings Collection
+A for loop iterates from 1 to 12, prompting the user to input savings for each month. Each input is converted into a float and accumulated into a running total variable (tts).
+
+2. Bonus Feature
+A conditional statement checks whether the user received a bonus.
+If "Yes", the bonus amount is added to the total savings.
+If "No", no changes are made.
+If another response is given, the program defaults to assuming no bonus.
+
+3. Final Computation
+After all inputs are processed, the program outputs the final savings total.
+
+File Structure
+
+--> savings_tracker.py
+--> README.md
+--> CHANGELOG.md
+
+The structure is intentionally minimal to maintain clarity and organization.
+
+Installation and Execution Instructions
+
+Install Python 3.13.7 or newer.
+Clone this repository or download the source file.
+Open terminal/command prompt.
+Navigate to the project directory.
+Run:
+python savings_tracker.py
+
+Current Project Status
+
+Version 1.1.0 — Bonus feature implemented.
+Further updates may include stronger input validation and enhanced financial features.
+
+Programming and Computing Ethics
+
+This project follows responsible programming practices aligned with the ACM Code of Ethics (Association for Computing Machinery, 2018).
+
+Ethical considerations include:
+
+Respect for Intellectual Property: All code in this repository was written by the contributors. No external code was copied without attribution.
+User Privacy: The program does not collect, store, or transmit user financial data. All input remains temporary during execution.
+Accessibility: The interface uses clear prompts and straightforward instructions to ensure usability for beginner users.
+Transparency: The program clearly displays computations and final totals, avoiding misleading calculations.
+
+Reference:
+
+Association for Computing Machinery. (2018). ACM Code of Ethics and Professional Conduct. 
+https://www.acm.org/code-of-ethics
+
+Contributors
+
+Andrea Chloe G. Dando
+Fritz Varun H. Tomines
+Lit'le Tarcisse Janica D. Ensomo
