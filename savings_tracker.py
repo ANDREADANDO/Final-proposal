@@ -1,5 +1,3 @@
-This is the code na:
-
 print("Savings Tracker")
 print("Enter your monthly savings below:")
 
