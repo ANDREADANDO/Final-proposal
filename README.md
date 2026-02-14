@@ -54,7 +54,7 @@ python savings_tracker.py
 
 Current Project Status
 
-Version 1.1.0 — Bonus feature implemented.
+Version 1.2.0 — Emergency Withdrawal feature implemented.
 Further updates may include stronger input validation and enhanced financial features.
 
 Programming and Computing Ethics
