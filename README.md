@@ -65,10 +65,10 @@ This project follows responsible programming practices aligned with the ACM Code
 
 ## Ethical considerations include:
 
-### Respect for Intellectual Property: All code in this repository was written by the contributors. No external code was copied without attribution.
-### User Privacy: The program does not collect, store, or transmit user financial data. All input remains temporary during execution.
-### Accessibility: The interface uses clear prompts and straightforward instructions to ensure usability for beginner users.
-### Transparency: The program clearly displays computations and final totals, avoiding misleading calculations.
+##### Respect for Intellectual Property: All code in this repository was written by the contributors. No external code was copied without attribution.
+##### User Privacy: The program does not collect, store, or transmit user financial data. All input remains temporary during execution.
+##### Accessibility: The interface uses clear prompts and straightforward instructions to ensure usability for beginner users.
+##### Transparency: The program clearly displays computations and final totals, avoiding misleading calculations.
 
 # Reference:
 
