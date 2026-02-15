@@ -37,11 +37,11 @@ After all inputs are processed, the program outputs the final savings total.
 
 # File Structure
 
-#### --> savings_tracker.py
+#### --> CHANGELOG.md
 
 #### --> README.md
 
-#### --> CHANGELOG.md
+#### --> savings_tracker.py
 
 The structure is intentionally minimal to maintain clarity and organization.
 
