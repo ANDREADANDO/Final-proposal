@@ -11,7 +11,7 @@ Added BONUS feature.
 - Users can now choose if they received a bonus.  
 - Bonus amount is added to total yearly savings.
 
-Version 1.2.0 — Febraury 14, 2026
+## Version 1.2.0 — Febraury 14, 2026
 Added Emergency Withdrawal Feature.
 - Users can now choose to withdraw money for emergencies.
 - Prevents negative savings by setting total to $0 if withdrawal exceeds balance.
