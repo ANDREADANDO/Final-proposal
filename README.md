@@ -1,54 +1,65 @@
 # Savings Tracker
 
-# Project Overview
+## Project Overview
+The Savings Tracker is a Python-based financial tracking application with a graphical user interface (GUI) built using Tkinter. It allows users to input monthly savings, bonuses, and withdrawals, then calculates total savings, analyzes financial performance, and evaluates whether a yearly savings goal has been achieved.
 
-The Savings Tracker is a Python-based financial tracking program that calculates a user’s total savings over 12 months. The system collects monthly savings data, computes the annual total, and optionally adds a yearly bonus.
-This project demonstrates the application of core programming concepts including iteration, conditional logic, user input handling, and data computation.
+The project demonstrates key programming concepts such as loops, functions, file handling, GUI development, conditional logic, and data persistence using JSON.
 
-# Updated Feature List
+## Updated Feature List
+- Collects 12 months of savings input through a GUI  
+- Calculates total annual savings  
+- Computes average, highest, and lowest monthly savings  
+- Identifies highest and lowest saving months  
+- Allows input of bonus income and withdrawals  
+- Computes final adjusted savings  
+- Compares results against a user-defined savings goal  
+- Provides performance feedback (goal achieved or not)  
+- Saves all records to a JSON file (`savings_record.json`)  
+- Handles invalid inputs using error checking and exceptions  
 
-Collects 12 months of savings input using a loop
-Computes total annual savings
-Allows user to indicate whether a yearly bonus was received
-Adds bonus amount to total savings if applicable
-Handles invalid bonus responses using conditional checks
-Displays final adjusted savings
+## Technologies Used
+- **Python 3.13+** – Core programming language used for logic and computation  
+- **Tkinter** – Built-in Python library used to create the graphical user interface  
+- **JSON** – Used for saving and storing user financial records persistently  
 
-# Technologies Used
+Python was chosen for its simplicity, readability, and strong support for GUI development and data handling.
 
-Python 3.13.7
-Chosen for its readability, simplicity, and suitability for beginner-to-intermediate programming projects. Python supports clear syntax for loops and conditionals, making it ideal for financial computation tasks.
+## Detailed Methodology
 
-# Detailed Methodology
+### 1. Monthly Savings Input
+The GUI provides 12 input fields representing each month of the year. Users enter their savings per month, which are stored in a list and processed using iteration.
 
-## Core Feature Implementation
+### 2. Savings Analysis
+The program calculates:
+- Total savings  
+- Average monthly savings  
+- Highest and lowest savings  
+- Corresponding months for highest and lowest values  
 
-### 1. Monthly Savings Collection
-A for loop iterates from 1 to 12, prompting the user to input savings for each month. Each input is converted into a float and accumulated into a running total variable (tts).
+### 3. Adjustments (Bonus and Withdrawal)
+After initial computation:
+- Bonus amounts are added to total savings  
+- Withdrawal amounts are deducted from total savings  
 
-### 2. Bonus Feature
-A conditional statement checks whether the user received a bonus.
-If "Yes", the bonus amount is added to the total savings.
-If "No", no changes are made.
-If another response is given, the program defaults to assuming no bonus.
+### 4. Goal Evaluation
+The final adjusted total is compared to the user’s savings goal:
+- If the goal is met or exceeded, a success message is displayed.
+- Otherwise, the program shows the shortfall and percentage achieved. 
 
-### 3. Final Computation
-After all inputs are processed, the program outputs the final savings total.
+### 5. Data Storage
+All savings records are stored in `savings_record.json`, allowing users to track past entries and results.
 
-# File Structure
-
-#### --> CHANGELOG.md
-
-#### --> README.md
-
+## File Structure( in no particular order)
 #### --> savings_tracker.py
+#### --> README.md
+#### --> CHANGELOG.md
 
 The structure is intentionally minimal to maintain clarity and organization.
 
 # Installation and Execution Instructions
 
 1. Install Python 3.13.7 or newer.
-2. Clone this repository or download the source file.
+2. Clone this repository or download the source file.9
 3. Open terminal/command prompt.
 4. Navigate to the project directory.
 5. Run:
