@@ -57,7 +57,7 @@ def save_to_file(data):
     with open(FILE_PATH, "w") as file:
         json.dump(existing_data, file, indent=4)
 
-# ---------------- NEW VIEW HISTORY FUNCTION ----------------
+# ---------------- VIEW HISTORY FUNCTION ----------------
 def show_history():
     history_window = tk.Toplevel(root)
     history_window.title("Saved History")
