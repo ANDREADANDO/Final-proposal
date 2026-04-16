@@ -1,6 +1,11 @@
 import json
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, scrolledtext
+import os
+
+# Get the directory where the script is located to ensure the file is easy to find
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+FILE_PATH = os.path.join(SCRIPT_DIR, "savings_record.json")
 
 months = [
     "January", "February", "March", "April",
@@ -11,7 +16,7 @@ months = [
 # ---------------- SAVINGS FUNCTIONS ----------------
 def analyze_savings(savings):
     total = sum(savings)
-    average = total / len(savings)
+    average = total / len(savings) if len(savings) > 0 else 0
     highest = max(savings)
     lowest = min(savings)
     highest_month = months[savings.index(highest)]
@@ -29,7 +34,7 @@ def evaluate_goal(final_total, goal):
         return "🎉 Congratulations! You achieved your savings goal."
     else:
         difference = goal - final_total
-        percentage = (final_total / goal) * 100
+        percentage = (final_total / goal * 100) if goal > 0 else 0
         return (
             "You did not reach your savings goal.\n"
             f"You are ${difference:.2f} short.\n"
@@ -38,15 +43,44 @@ def evaluate_goal(final_total, goal):
 
 def save_to_file(data):
     try:
-        with open("savings_record.json", "r") as file:
-            existing_data = json.load(file)
-        if isinstance(existing_data, dict):
-            existing_data = [existing_data]
+        if os.path.exists(FILE_PATH):
+            with open(FILE_PATH, "r") as file:
+                existing_data = json.load(file)
+            if isinstance(existing_data, dict):
+                existing_data = [existing_data]
+        else:
+            existing_data = []
     except (FileNotFoundError, json.JSONDecodeError):
         existing_data = []
+
     existing_data.append(data)
-    with open("savings_record.json", "w") as file:
+    with open(FILE_PATH, "w") as file:
         json.dump(existing_data, file, indent=4)
+
+# ---------------- NEW VIEW HISTORY FUNCTION ----------------
+def show_history():
+    history_window = tk.Toplevel(root)
+    history_window.title("Saved History")
+    history_window.geometry("400x400")
+
+    text_area = scrolledtext.ScrolledText(history_window, width=45, height=20)
+    text_area.pack(padx=10, pady=10)
+
+    try:
+        with open(FILE_PATH, "r") as file:
+            data = json.load(file)
+            if not data:
+                text_area.insert(tk.END, "No records found.")
+            else:
+                for i, record in enumerate(data, 1):
+                    text_area.insert(tk.END, f"--- Record #{i} ---\n")
+                    text_area.insert(tk.END, f"Goal: ${record['goal']}\n")
+                    text_area.insert(tk.END, f"Final Total: ${record['final_total']}\n")
+                    text_area.insert(tk.END, "-"*20 + "\n")
+    except FileNotFoundError:
+        text_area.insert(tk.END, "No storage file found yet. Save some data first!")
+    
+    text_area.configure(state='disabled') # Prevent user from editing history window
 
 # ---------------- GUI FUNCTION ----------------
 def run_tracker():
@@ -58,12 +92,15 @@ def run_tracker():
             savings.append(value)
         bonus = float(bonus_entry.get() or 0)
         withdrawal = float(withdraw_entry.get() or 0)
+        
         total, analysis = analyze_savings(savings)
         total += bonus
         total -= withdrawal
+        
         result_text = f"{analysis}\n\nFinal Savings After Adjustments: ${total}\n\n"
         result_text += evaluate_goal(total, goal)
         result_label.config(text=result_text)
+        
         save_data = {
             "goal": goal,
             "monthly_savings": savings,
@@ -72,16 +109,16 @@ def run_tracker():
             "final_total": total
         }
         save_to_file(save_data)
-        messagebox.showinfo("Saved", "Savings data saved successfully!")
+        messagebox.showinfo("Saved", f"Saved to:\n{FILE_PATH}")
     except ValueError:
         messagebox.showerror("Input Error", "Please enter valid numbers.")
 
 # ---------------- GUI ----------------
 root = tk.Tk()
 root.title("Savings Tracker")
-root.geometry("420x700")
+root.geometry("450x800")
 
-tk.Label(root, text="Savings Tracker", font=("Arial", 16)).pack(pady=10)
+tk.Label(root, text="Savings Tracker", font=("Arial", 16, "bold")).pack(pady=10)
 
 # Goal
 tk.Label(root, text="Yearly Savings Goal").pack()
@@ -93,27 +130,30 @@ tk.Label(root, text="Monthly Savings").pack(pady=10)
 month_entries = []
 for i in range(12):
     frame = tk.Frame(root)
-    frame.pack()
-    tk.Label(frame, text=months[i]).pack(side="left")
-    entry = tk.Entry(frame, width=10)
-    entry.pack(side="left", padx=5)
+    frame.pack(fill="x", padx=50)
+    tk.Label(frame, text=months[i], width=10, anchor="w").pack(side="left")
+    entry = tk.Entry(frame, width=15)
+    entry.pack(side="right", padx=5)
     month_entries.append(entry)
 
-# Bonus
+# Bonus & Withdrawal
 tk.Label(root, text="Bonus Amount").pack(pady=5)
 bonus_entry = tk.Entry(root)
 bonus_entry.pack()
 
-# Withdrawal
 tk.Label(root, text="Total Withdrawal").pack(pady=5)
 withdraw_entry = tk.Entry(root)
 withdraw_entry.pack()
 
-# Run button
-tk.Button(root, text="Run Savings Tracker", command=run_tracker).pack(pady=15)
+# Buttons
+btn_frame = tk.Frame(root)
+btn_frame.pack(pady=20)
+
+tk.Button(btn_frame, text="Run & Save", command=run_tracker, bg="lightgreen", width=15).pack(side="left", padx=5)
+tk.Button(btn_frame, text="View History", command=show_history, bg="lightblue", width=15).pack(side="left", padx=5)
 
 # Results
-result_label = tk.Label(root, text="", wraplength=380, justify="left")
+result_label = tk.Label(root, text="", wraplength=380, justify="left", font=("Arial", 10))
 result_label.pack(pady=10)
 
 root.mainloop()
