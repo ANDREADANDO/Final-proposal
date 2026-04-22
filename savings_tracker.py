@@ -86,13 +86,20 @@ def show_history():
 def run_tracker():
     try:
         goal = float(goal_entry.get() or 0)
-        savings = []
-        for entry in month_entries:
-            value = float(entry.get() or 0)
-            savings.append(value)
         bonus = float(bonus_entry.get() or 0)
         withdrawal = float(withdraw_entry.get() or 0)
         
+        savings = []
+        for entry in month_entries:
+            val = float(entry.get() or 0)
+            savings.append(val)
+
+        # VALIDATION: Stop everything if a negative is found before math begins
+        all_inputs = [goal, bonus, withdrawal] + savings
+        if any(n < 0 for n in all_inputs):
+            messagebox.showerror("Invalid Input", "Negative values are not allowed. Please try again.")
+            return 
+
         total, analysis = analyze_savings(savings)
         total += bonus
         total -= withdrawal
@@ -116,7 +123,7 @@ def run_tracker():
 # ---------------- GUI ----------------
 root = tk.Tk()
 root.title("Savings Tracker")
-root.geometry("450x800")
+root.geometry("450x850")
 
 tk.Label(root, text="Savings Tracker", font=("Arial", 16, "bold")).pack(pady=10)
 
